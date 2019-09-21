@@ -1,0 +1,143 @@
+
+<?php 
+ob_start();
+session_start();
+require_once 'baglan.php'; ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dersler
+	</title>
+	<link rel="stylesheet" type="text/css" href="tasarim2.css">
+</head>
+<body background="arka.png">
+  <div class="ust"><h1>Sınav Hazırlama Otomasyonu</h1></div>
+
+
+
+
+  
+
+
+
+<div class="ana">
+
+<br>
+
+<div class="bosluk"></div>
+
+<div class="solkenar"> 
+    <div><button class="myButton" onclick="location.href='index.php'"> AnaSayfa</button></div>
+<div class="bosluk"></div>
+
+<div><button class="myButton" onclick="location.href='kullanici.php'"> Kullanici</button></div>
+<div class="bosluk"></div>
+<div><button class="myButton" onclick="location.href='sorular.php'"> Soru Hazirla</button></div>
+<div class="bosluk"></div>
+<div><button class="myButton" onclick="location.href='dersler.php'"> Dersler</button></div>
+<div class="bosluk"></div>
+<div><button class="myButton" onclick="location.href='soruhazirla.php'">SoruGöster</button></div>
+<div class="bosluk"></div>
+<div><button class="myButton" onclick="location.href='cikis.php'">Çıkış</button></div>
+
+</div>
+
+
+
+</form>
+		
+<form method="post" action="islem.php" enctype="multipart/form-data" onsubmit="return isValid(this)">
+
+<table border="3" align="center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+        <tr >
+            <td width="150px">Ders Adi</td>
+            <td width="150px"><input type="text" name="ders_adi" /></td>
+        </tr>
+
+        <tr>
+         
+          
+           
+           
+        <tr>
+            <td colspan="2" ><input type="submit" name="ders_ekle" value="Ekle" /></td>
+        </tr>
+    </table>
+
+ </form>
+
+<br><br><br>
+
+<form method="POST" action="islem.php" >
+    <table style="width: :70%"border="1" align="center">
+
+<tr> 
+  <th>Ders </th>
+    <th>Listesi </th>
+    <th></th>
+   
+</tr>
+     <tr>
+        <th>DersSırası</th> 
+        
+
+          <th>Ders ID</th>
+          <th>Ders Adi</th>
+          <th width="50">Silme</th>
+          <th width="50">Düzenleme</th>
+
+      </tr>
+
+      <?php
+      $bilgisor=$db->prepare("SELECT *FROM dersler");
+      $bilgisor->execute();
+      $say=0;
+
+      while($bilgicek=$bilgisor->fetch(PDO::FETCH_ASSOC)){$say++?> 
+
+     
+      
+<tr>
+  <td><?php echo $say;?>   </td>
+   <td>  <?php echo $bilgicek['ders_id']?></td>
+  <td>  <?php echo $bilgicek['ders_adi']?></td>
+  
+  <td align="center"><button  type="submit" name="ders_silme" value="<?php echo $bilgicek['ders_id']?>" width="49"><img src="sil.png"></button></td>
+  <td  align="center"> <a  href="dersduz.php?ders_id=<?php echo $bilgicek['ders_id']?> "  ><img src="duzenle.png"></a></td>
+</tr>     
+  <?php } ?>
+    </table>
+
+
+</form>
+
+<script >
+    function isValid(frm)
+{
+    var ders_adi = frm.ders_adi .value;
+    
+    
+
+    
+    
+    if ( ders_adi ==null || ders_adi =="" || ders_adi .length < 2 )
+    {
+        alert("Soru adı 4 karakterden az olamaz");
+        return false;
+    }
+
+
+    
+
+    return true;
+}
+</script>
+</body>
+</html>
