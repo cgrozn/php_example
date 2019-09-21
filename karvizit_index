@@ -1,0 +1,99 @@
+
+<html>
+<head>
+	<title>
+		KARTVİZİT OLUŞTURMA
+	</title>
+	<link rel="stylesheet" type="text/css" href="tasarim.css">
+
+</head>
+<body>
+
+
+<div>
+<form1 name="form1" action="kaydet.php" method="post" enctype="multipart/form-data" onsubmit="return kontrol()">
+
+	<table cellpadding="5" cellspacing="5">
+	
+	<tr>
+	<td>İSİM SOYİSİM:</td>
+
+	<td><input type="text" name="Ad"></td>
+
+    </tr>
+     
+     <tr>
+
+	<td>TELEFON:</td>
+	<td><input type="text" name="tel"></td>
+    </tr>
+     
+     <tr>
+
+	<td>EMAİL:</td>
+	<td><input type="text" name="Email"></td>
+    </tr>
+    
+     <tr>
+
+	<td>ADRES:</td>
+	<td><textarea cols="40" rows="8" name="Adres"> </textarea></td>
+    </tr>
+    	
+    <td></td>
+	<td><input type="file" name="dosya" /></td>
+	<td></td>
+	<td><input type="submit" value="KAYDET"></td>
+	<td><a href="listele.php">listele</a></td>
+
+
+
+</tr>
+
+</table>
+</form1>
+
+</div>
+
+<script>
+function kontrol(){
+
+if(document.form1.Ad.value==""){
+	alert("Lütfen isim alanını boş bırakmayınız.");
+	document.form1.Ad.focus();
+	return false;
+}
+
+if(document.form1.tel.value==""){
+	alert("Lütfen Telefon Alanını Boş Bırakmayınız.");
+	document.form1.tel.focus();
+	return false;
+}
+if(document.form1.Email.value==""){
+	alert("Lütfen E-Mail Alanını Boş Bırakmayınız.");
+	document.form1.Email.focus();
+	return false;
+}
+if(document.form1.Adres.value==""){
+	alert("Lütfen Adres Alanını Boş Bırakmayınız.");
+	document.form1.Adres.focus();
+	return false;
+}
+if((document.form1.Email.value.indexOf("@"))<1){
+	alert("Lütfen E-Mail Adresinizi Kontrol Ediniz");
+	document.form1.Email.focus();
+	return false;
+}
+
+if(document.form1.dosya.value==""){
+	alert("Lütfen dosya seçiniz.");
+	document.form1.dosya.focus();
+	return false;
+}
+ } 
+
+</script>
+
+
+</body>
+</html>
