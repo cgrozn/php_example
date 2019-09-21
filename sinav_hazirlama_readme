@@ -1,4 +1,6 @@
-yer alan sinav hazirlama.. dosyaları bir araya gelerek oluşturulan yapıda 
+yer alan sinav hazirlama_  dosyaları bir araya gelerek oluşturulan yapıdadır.
+rar indirilip incelene bilir veya gerekli kodlar incelenir.
 php ve sql yardımyla soru hazırlama kullanıcı girişi sağlanır.
 kaydetme soru işaretleme gibi işlemler yapılır.
 session mantığı ile yapılmıstır.
+
