@@ -1,0 +1,88 @@
+
+<?php 
+ob_start();
+session_start();
+require_once 'baglan.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kullanici
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="tasarim.css">
+</head>
+<body>
+	<div class="ust"><h1>Sınav Hazırlama Otomasyonu</h1></div>
+<form method="post" action="islem.php"  enctype="multipart/form-data" onsubmit="return isValid(this)" >
+	
+	
+</div>
+<br>
+<div class="solkenar"> 
+<div class="bosluk"></div>
+<div class="yazibaslik"> <a class="a" href="kullanici.php">Kullanıcılar </a></div>
+<div class="bosluk"></div>
+<div class="yazibaslik"><a class="a" href="sorular.php">Sorular Hazırla</a></div>
+<div class="bosluk"></div>
+<div class="yazibaslik"><a class="a" href="dersler.php">Dersler</a></div>
+<div class="bosluk"></div>
+<div class="yazibaslik"><a class="a" href="soruhazirla.php">Soru Göster</a></div>
+<div class="bosluk"></div>
+
+
+</div>
+
+</form>
+
+<?php
+      $bilgisor=$db->prepare("SELECT *FROM sorular where soru_id=:soru_id ");
+      $bilgisor->execute(array('soru_id'=>$_GET['soru_id']
+  ));
+    
+
+    $bilgicek=$bilgisor->fetch(PDO::FETCH_ASSOC);
+
+
+
+      	?> 
+<form action="islem.php" method="POST">
+	<input type="text" name="soru_adi" value="<?php echo $bilgicek['soru_adi']?>">
+	<input type="text" name="konu" value="<?php echo $bilgicek['konu']?>">
+	<input type="text" name="a" value="<?php echo $bilgicek['a']?>">
+	<input type="text" name="b" value="<?php echo $bilgicek['b']?>">
+	<input type="text" name="c" value="<?php echo $bilgicek['c']?>">
+	<input type="text" name="d" value="<?php echo $bilgicek['d']?>">
+	<input type="text" name="e" value="<?php echo $bilgicek['e']?>">
+	<button type="submit" name="soru_duzenle" value="<?php echo $bilgicek['soru_id']?>">FORMU GONDER</button>
+</form>
+
+
+  
+
+  
+
+
+<script >
+    function isValid(frm)
+{
+    var soru_adi = frm.soru_adi.value;
+    
+    
+
+    
+    
+    if ( soru_adi==null || soru_adi=="" || soru_adi.length < 2 )
+    {
+        alert("Soru adı 4 karakterden az olamaz");
+        return false;
+    }
+
+
+    
+
+    return true;
+}
+</script>
+
+</body>
+</html>
